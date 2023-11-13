@@ -14,3 +14,5 @@ void deletarTarefa(Tarefa tarefas[], int *qtd);
 void salvarTarefas(Tarefa tarefas[], int qtd);
 void carregarTarefas(Tarefa tarefas[], int *qtd);
 void alterarTarefa(Tarefa tarefas[], int *qtd);
+void filtrarPrioridade(Tarefa tarefas[], int qtd);
+void filtrarEstado(Tarefa tarefas[], int qtd);

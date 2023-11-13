@@ -144,3 +144,50 @@ void alterarTarefa(Tarefa tarefas[], int *qtd) {
     printf("Índice inválido.\n");
   }
 }
+
+void filtrarPrioridade(Tarefa tarefas[], int qtd) {
+  int prioridadeDesejada;
+  printf("Digite a prioridade desejada: ");
+  scanf("%d", &prioridadeDesejada);
+
+  int prioridadeEncontrada = 0;
+  for (int i = 0; i < qtd; i++) {
+    if (tarefas[i].prioridade == prioridadeDesejada) {
+      printf("Tarefa %d:\n", i + 1);
+      printf("Descricao: %s\n", tarefas[i].descricao);
+      printf("Categoria: %s\n", tarefas[i].categoria);
+      printf("Prioridade: %d\n", tarefas[i].prioridade);
+      printf("Estado: %s\n", tarefas[i].estado);
+      printf("\n");
+      prioridadeEncontrada++;
+    }
+  }
+
+  if (prioridadeEncontrada == 0) {
+    printf("Nenhuma tarefa encontrada com prioridade %d ou superior.\n",
+           prioridadeDesejada);
+  }
+}
+
+void filtrarEstado(Tarefa tarefas[], int qtd) {
+  char estadoDesejado[100];
+  printf("Digite o estado desejado: ");
+  scanf("%s", estadoDesejado);
+
+  int estadoEncontrado = 0;
+  for (int i = 0; i < qtd; i++) {
+    if (strcmp(tarefas[i].estado, estadoDesejado) == 0) {
+      printf("Tarefa %d:\n", i + 1);
+      printf("Descricao: %s\n", tarefas[i].descricao);
+      printf("Categoria: %s\n", tarefas[i].categoria);
+      printf("Prioridade: %d\n", tarefas[i].prioridade);
+      printf("Estado: %s\n", tarefas[i].estado);
+      printf("\n");
+      estadoEncontrado++;
+    }
+  }
+
+  if (estadoEncontrado == 0) {
+    printf("Nenhuma tarefa encontrada com o estado %s.\n", estadoDesejado);
+  }
+}

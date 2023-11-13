@@ -59,3 +59,22 @@ int main() {
             case 9:
               filtrarPrioridadeECategoria(tarefas,qtd);
                 break;
+            case 10:
+              arquivoPrioridade(tarefas,qtd);
+                break;
+            case 11:
+              arquivoCategoriaCrescente(tarefas, qtd);
+                break;
+            case 12:
+              arquivoPrioridadeECategoria(tarefas,qtd);
+                break;
+            case 13:
+              printf("Fechando programa.\n");
+              break;
+            default:
+                printf("Tente outra acao.\n");
+        }
+    } while (opcao != 13);
+
+    return 0;
+}

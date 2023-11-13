@@ -259,3 +259,92 @@ void filtrarPrioridadeECategoria(Tarefa tarefas[], int qtd) {
            prioridadeDesejada, categoriaDesejada);
   }
 }
+
+void arquivoPrioridade(Tarefa tarefas[], int qtd) {
+  int prioridadeDesejada;
+  printf("Digite a prioridade desejada para o arquivo: ");
+  scanf("%d", &prioridadeDesejada);
+  FILE *arquivo = fopen("arquivoPrioridade.txt", "w");
+  if (arquivo == NULL) {
+    printf("Erro ao abrir o arquivo para exportar tarefas.\n");
+    return;
+  }
+
+  for (int i = 0; i < qtd; i++) {
+    if (tarefas[i].prioridade == prioridadeDesejada) {
+      fprintf(arquivo, "%d, %s, %s, %s\n", tarefas[i].prioridade,
+              tarefas[i].categoria, tarefas[i].descricao, tarefas[i].estado);
+    }
+  }
+
+  fclose(arquivo);
+}
+
+void arquivoCategoriaCrescente(Tarefa tarefas[], int qtd) {
+  char categoriaDesejada[100];
+
+  printf("Digite a categoria desejada: ");
+  scanf("%s", categoriaDesejada);
+
+  FILE *arquivo = fopen("arquivoCategoria.txt", "w");
+  if (arquivo == NULL) {
+    printf("Erro ao abrir o arquivo para exportar tarefas.\n");
+    return;
+  }
+  Tarefa tarefasCategoria[100];
+
+  int qtdCategoria = 0;
+
+  for (int i = 0; i < qtd; i++) {
+    if (strcmp(tarefas[i].categoria, categoriaDesejada) == 0) {
+      tarefasCategoria[qtdCategoria] = tarefas[i];
+      qtdCategoria++;
+    }
+  }
+
+  if (qtdCategoria == 0) {
+    printf("Nenhuma tarefa encontrada na categoria %s.\n", categoriaDesejada);
+    fclose(arquivo);
+    return;
+  }
+  qsort(tarefasCategoria, qtdCategoria, sizeof(Tarefa), compararPorPrioridade);
+
+  for (int i = 0; i < qtdCategoria; i++) {
+    fprintf(arquivo, "%d, %s, %s, %s\n", tarefasCategoria[i].prioridade,
+            tarefasCategoria[i].categoria, tarefasCategoria[i].descricao,
+            tarefasCategoria[i].estado);
+  }
+
+  fclose(arquivo);
+  printf("Tarefas exportadas com sucesso para o arquivo "
+         "'arquivoCategoria.txt'.\n");
+}
+
+void arquivoPrioridadeECategoria(Tarefa tarefas[], int qtd) {
+  int prioridadeDesejada;
+  char categoriaDesejada[100];
+
+  printf("Digite a prioridade desejada: ");
+  scanf("%d", &prioridadeDesejada);
+
+  printf("Digite a categoria desejada: ");
+  scanf("%s", categoriaDesejada);
+
+  FILE *arquivo = fopen("arquivoPrioridadeECategoria.txt", "w");
+  if (arquivo == NULL) {
+    printf("Erro ao abrir o arquivo para exportar tarefas.\n");
+    return;
+  }
+
+  for (int i = 0; i < qtd; i++) {
+    if (tarefas[i].prioridade == prioridadeDesejada &&
+        strcmp(tarefas[i].categoria, categoriaDesejada) == 0) {
+      fprintf(arquivo, "%d, %s, %s, %s\n", tarefas[i].prioridade,
+              tarefas[i].categoria, tarefas[i].descricao, tarefas[i].estado);
+    }
+  }
+
+  fclose(arquivo);
+  printf("Tarefas exportadas com sucesso para o arquivo "
+         "'arquivoPrioridadeECategoria.txt'.\n");
+}

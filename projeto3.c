@@ -1,45 +1,52 @@
-#include "projeto.h"
+#include "projeto3.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 void cadastrarTarefa(Tarefa tarefas[], int *qtd) {
-    if (*qtd >= 100) {
-        printf("O limite máximo de tarefas foi atingido .\n"); // Verifica se a quantidade limite de tarefas foi atingida.
-        return;
-    }
+  if (*qtd >= 100) {
+    printf(
+        "O limite máximo de tarefas foi atingido .\n"); // Verifica se a
+                                                        // quantidade limite de
+                                                // tarefas foi atingida.
+    return;
+  }
 
-// Se o limite máximo não foi atingido, cadastra a tarefa de acordo com o que o usuário digitar.
-    printf("Descricao Da Tarefa: ");
-    scanf(" %s", tarefas[*qtd].descricao);
+  // Se o limite máximo não foi atingido, cadastra a tarefa de acordo com o que
+  // o usuário digitar.
+  printf("Descricao Da Tarefa: ");
+  scanf(" %s", tarefas[*qtd].descricao);
 
-    printf("Categoria Da Tarefa: ");
-    scanf("%s", tarefas[*qtd].categoria);
+  printf("Categoria Da Tarefa: ");
+  scanf("%s", tarefas[*qtd].categoria);
 
-    printf("Prioridade Da Tarefa: ");
-    scanf("%d", &tarefas[*qtd].prioridade);
+  printf("Prioridade Da Tarefa: ");
+  scanf("%d", &tarefas[*qtd].prioridade);
 
-    (*qtd)++;
+  printf("Estado da Tarefa: ");
+  scanf("%s", tarefas[*qtd].estado);
+
+  (*qtd)++;
 }
 // Função que adiciona a tarefa que o usuário desejar.
 
-
 void listarTarefas(Tarefa tarefas[], int qtd) {
-    if (qtd == 0) {
-        printf("Sem tarefas cadastradas.\n"); // Verifica se há tarefas na lista.
-        return;
-    }
+  if (qtd == 0) {
+    printf("Sem tarefas cadastradas.\n"); // Verifica se há tarefas na lista.
+    return;
+  }
 
-    // Caso tenha, o laço for percorre a lista de tarefas printando as tarefas digitadas pelo usuário em ordem.
-    printf(" Lista de Tarefas:\n");
-    for (int i = 0; i < qtd; i++) {
-        printf("Tarefa %d:\n", i + 1);
-        printf("Descricao: %s\n", tarefas[i].descricao);
-        printf("Categoria: %s\n", tarefas[i].categoria);
-        printf("Prioridade: %d\n", tarefas[i].prioridade);
-        printf("\n");
-    }
+  // Caso tenha, o laço for percorre a lista de tarefas printando as tarefas
+  // digitadas pelo usuário em ordem.
+  printf(" Lista de Tarefas:\n");
+  for (int i = 0; i < qtd; i++) {
+    printf("Tarefa %d:\n", i + 1);
+    printf("Descricao: %s\n", tarefas[i].descricao);
+    printf("Categoria: %s\n", tarefas[i].categoria);
+    printf("Prioridade: %d\n", tarefas[i].prioridade);
+    printf("\n");
+  }
 }
 // Função que lista todas as tarefas adicionadas pelo usuário.
-
 
 void deletarTarefa(Tarefa tarefas[], int *qtd) {
   int indice;

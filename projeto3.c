@@ -191,3 +191,71 @@ void filtrarEstado(Tarefa tarefas[], int qtd) {
     printf("Nenhuma tarefa encontrada com o estado %s.\n", estadoDesejado);
   }
 }
+
+int compararPorPrioridade(const void *a, const void *b) {
+  return ((Tarefa *)a)->prioridade - ((Tarefa *)b)->prioridade;
+}
+
+void filtrarCategoriaCrescente(Tarefa tarefas[], int qtd) {
+  char categoriaDesejada[100];
+
+  printf("Digite a categoria desejada: ");
+  scanf("%s", categoriaDesejada);
+
+  Tarefa tarefasCategoria[100];
+  int qtdCategoria = 0;
+
+  for (int i = 0; i < qtd; i++) {
+    if (strcmp(tarefas[i].categoria, categoriaDesejada) == 0) {
+      tarefasCategoria[qtdCategoria] = tarefas[i];
+      qtdCategoria++;
+    }
+  }
+
+  if (qtdCategoria == 0) {
+    printf("Nenhuma tarefa encontrada na categoria %s.\n", categoriaDesejada);
+    return;
+  }
+
+  qsort(tarefasCategoria, qtdCategoria, sizeof(Tarefa), compararPorPrioridade);
+
+  printf("Tarefas na categoria %s, ordenadas por prioridade crescente:\n",
+         categoriaDesejada);
+  for (int i = 0; i < qtdCategoria; i++) {
+    printf("Tarefa %d:\n", i + 1);
+    printf("Descricao: %s\n", tarefasCategoria[i].descricao);
+    printf("Categoria: %s\n", tarefasCategoria[i].categoria);
+    printf("Prioridade: %d\n", tarefasCategoria[i].prioridade);
+    printf("Estado: %s\n", tarefasCategoria[i].estado);
+    printf("\n");
+  }
+}
+
+void filtrarPrioridadeECategoria(Tarefa tarefas[], int qtd) {
+  char categoriaDesejada[100];
+  int prioridadeDesejada;
+  printf("Digite a prioridade desejada: ");
+  scanf("%d", &prioridadeDesejada);
+
+  printf("Digite a categoria desejada: ");
+  scanf("%s", categoriaDesejada);
+
+  int prioridadeECategoriaDesejada = 0;
+  for (int i = 0; i < qtd; i++) {
+    if (tarefas[i].prioridade == prioridadeDesejada &&
+        strcmp(tarefas[i].categoria, categoriaDesejada) == 0) {
+      printf("Tarefa %d:\n", i + 1);
+      printf("Descricao: %s\n", tarefas[i].descricao);
+      printf("Categoria: %s\n", tarefas[i].categoria);
+      printf("Prioridade: %d\n", tarefas[i].prioridade);
+      printf("Estado: %s\n", tarefas[i].estado);
+      printf("\n");
+      prioridadeECategoriaDesejada++;
+    }
+  }
+
+  if (prioridadeECategoriaDesejada == 0) {
+    printf("Nenhuma tarefa encontrada com prioridade %d e categoria %s.\n",
+           prioridadeDesejada, categoriaDesejada);
+  }
+}

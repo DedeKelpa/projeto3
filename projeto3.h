@@ -17,3 +17,4 @@ void alterarTarefa(Tarefa tarefas[], int *qtd);
 void filtrarPrioridade(Tarefa tarefas[], int qtd);
 void filtrarEstado(Tarefa tarefas[], int qtd);
 void filtrarPrioridadeECategoria(Tarefa tarefas[], int qtd);
+void filtrarCategoriaCrescente(Tarefa tarefas[], int qtd);

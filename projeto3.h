@@ -18,3 +18,7 @@ void filtrarPrioridade(Tarefa tarefas[], int qtd);
 void filtrarEstado(Tarefa tarefas[], int qtd);
 void filtrarPrioridadeECategoria(Tarefa tarefas[], int qtd);
 void filtrarCategoriaCrescente(Tarefa tarefas[], int qtd);
+void arquivoPrioridade(Tarefa tarefas[], int qtd);
+void arquivoCategoriaCrescente(Tarefa tarefas[], int qtd);
+void arquivoPrioridadeECategoria(Tarefa tarefas[], int qtd);
+#endif // PROJETO3FINAL_PROJETO_H
